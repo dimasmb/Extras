@@ -1,5 +1,7 @@
 import scipy.signal as ss
+import scipy.fft as fft
 import matplotlib.pyplot as plt
+import numpy as np
 
 """
 Guia 1
@@ -43,5 +45,39 @@ def Ej9():
     plt.grid()
     plt.show()
 
+def Ej15():
+    # n=np.linspace(0, 100, 100)
+    n=np.arange(1000)
+    x_n= 2*np.sin(100*n)
+    X=fft.fft(x_n)
+    freq=fft.fftfreq(x_n.shape[0])
 
-Ej9()
+    x_n_M=[]
+    M=3
+    for i in range(len(x_n)):
+        if(i%M==True):
+            x_n_M.append(x_n[i])
+    x_n_M=np.array(x_n_M)
+    X_M=fft.fft(x_n_M)
+    freq_M=fft.fftfreq(x_n_M.shape[0])
+
+    """x_recu=[]
+    for i in range(len(x_n_M)-1):
+        x_recu.append(x_n_M[i])
+        x_recu.append((x_n_M[i]+x_n_M[i+1])/2)
+    x_recu.append(x_n_M[-1])
+    x_recu = np.array(x_recu)
+    X_recu=fft.fft(x_recu)
+    freq_recu=fft.fftfreq(x_recu.shape[0])"""
+
+    fig, ax = plt.subplots()
+    ax.plot(freq, X.real, linestyle="--", linewidth=1, marker="o", markersize=2, label="X(n)")
+    ax.plot(freq_M, X_M.real, linestyle="--", linewidth=1, marker="o", markersize=2, label=r'$X_{M=3}(n)$')
+    # ax.plot(freq_recu, X_recu.real, linestyle="--", linewidth=1,  marker="o", markersize=2, label="X(n) recuperada")
+    plt.grid()
+    plt.legend()
+    plt.xlabel("Frecuencia")
+    plt.ylabel(r'X(n)')
+    plt.show()
+
+Ej15()
