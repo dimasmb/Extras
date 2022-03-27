@@ -31,12 +31,14 @@ def Ej9():
         y_arr3.append(y_eq(i, x_arr, y_arr3, a3, b3))
 
     fig, ax=plt.subplots()
-    ax.plot(range(0, 31), x_arr[2:], linestyle="--", marker="o", markersize=3, label="Escalon")
+    ax.plot(range(0, 31), x_arr[2:], linestyle="--", marker="o", markersize=3, label=r'Impulso $x(n)$')
     ax.plot(range(0, 31), y_arr1[2:], linestyle="--", marker="o", markersize=3, label=r'$\alpha=1 ; \beta=-1/2$')
     ax.plot(range(0, 31), y_arr2[2:], linestyle="--", marker="o", markersize=3, label=r'$\alpha=1/2 ; \beta=-1/8$')
     ax.plot(range(0, 31), y_arr3[2:], linestyle="--", marker="o", markersize=3, label=r'$\alpha=5/4 ; \beta=-25/32$')
 
-    plt.title("Respuesta al escalón")
+    # plt.title("Respuesta al escalón")
+    plt.xlabel("n")
+    plt.ylabel(r'$y(n)$')
     plt.legend()
     plt.grid()
     plt.show()
